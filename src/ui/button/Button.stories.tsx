@@ -1,31 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { Button } from './Button';
 
+// Создаею объект meta, который содержит метаданные для компонента Button.
 const meta: Meta<typeof Button> = {
-	component: Button,
+	// указывает, что метаданные относятся к компоненту Button.
+	component: Button, // Свойство component указывает, какой компонент будет использоваться в историях.
 };
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const ButtonStory: Story = {
+	// Создается тип Story, который представляет собой историю (story) для компонента Button.
 	render: () => {
 		return (
-			<div style={{ display: 'flex', gap: '10px' }}>
-				<Button
-					title='Применить'
-					htmlType='submit'
-					type='apply'
-					onClick={() => alert('клик на кнопку применить')}
-				/>
+			// возвращаю 2 компонента массив с объектами
+			<>
 				<Button
 					title='Сбросить'
-					htmlType='reset'
-					type='clear'
+					type='reset'
 					onClick={() => alert('клик на кнопку сбросить')}
 				/>
-			</div>
+				<Button
+					title='Применить'
+					type='submit'
+					onClick={() => alert('клик на кнопку применить')}
+				/>
+			</>
 		);
 	},
 };

@@ -1,4 +1,5 @@
 export const fontFamilyClasses = [
+	// создаю масств для использования классов шрифтов
 	'open-sans',
 	'ubuntu',
 	'cormorant-garamond',
@@ -6,15 +7,18 @@ export const fontFamilyClasses = [
 	'merriweather',
 ] as const;
 
+// Создаю тип FontFamiliesClasses, который представляет собой объединение всех элементов массива fontFamilyClasses.
+//  Тип будет равен 'open-sans' | 'ubuntu' | 'cormorant-garamond' | 'days-one' | 'merriweather'.
 export type FontFamiliesClasses = (typeof fontFamilyClasses)[number];
 
+// тип описывет массив с 4мя строками объекта
 export type OptionType = {
 	title: string;
 	value: string;
 	className: string;
 	optionClassName?: string;
 };
-
+// каждый элемент массива может иметь дополнительное свойство optionClassName, которое должно быть одним из значений типа FontFamiliesClasses.
 export const fontFamilyOptions: OptionType[] & {
 	optionClassName?: FontFamiliesClasses;
 } = [
@@ -32,7 +36,7 @@ export const fontFamilyOptions: OptionType[] & {
 		className: fontFamilyClasses[4],
 	},
 ];
-
+// экспортирую массивы объектов с размины значениями для отображения на странице
 export const fontColors: OptionType[] = [
 	{
 		title: 'Черный',
@@ -168,12 +172,13 @@ export const fontSizeOptions: OptionType[] = [
 	{ title: '38px', value: '38px', className: 'font-size-38' },
 ];
 
+// Каждое свойство объекта инициализируется первым элементом соответствующего массива:
 export const defaultArticleState = {
-	fontFamilyOption: fontFamilyOptions[0],
-	fontColor: fontColors[0],
-	backgroundColor: backgroundColors[0],
-	contentWidth: contentWidthArr[0],
-	fontSizeOption: fontSizeOptions[0],
+	fontFamilyOption: fontFamilyOptions[0], // первый шрифт из fontFamilyOptions
+	fontColor: fontColors[0], // первый цвет текста из fontColors.
+	backgroundColor: backgroundColors[0], // первый цвет фона из backgroundColors.
+	contentWidth: contentWidthArr[0], // первая ширина контента из contentWidthArr.
+	fontSizeOption: fontSizeOptions[0], // первый размер шрифта из fontSizeOptions.
 };
 
 export type ArticleStateType = typeof defaultArticleState;

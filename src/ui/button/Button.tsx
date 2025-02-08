@@ -1,28 +1,19 @@
-import { Text } from 'src/ui/text';
-
+import { Text } from '../text';
 import styles from './Button.module.scss';
-import { clsx } from 'clsx';
 
+// экспортирую кнопку с массивом объектов
 export const Button = ({
 	title,
 	onClick,
-	htmlType,
 	type,
 }: {
 	title: string;
 	onClick?: () => void;
-	htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-	type: 'apply' | 'clear';
+	type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }) => {
+	// возвращаю jsx формат с объектом и стилями
 	return (
-		<button
-			className={clsx(
-				styles.button,
-				{ [styles.button_apply]: type === 'apply' },
-				{ [styles.button_clear]: type === 'clear' }
-			)}
-			type={htmlType}
-			onClick={onClick}>
+		<button className={styles.button} type={type} onClick={onClick}>
 			<Text weight={800} uppercase>
 				{title}
 			</Text>
