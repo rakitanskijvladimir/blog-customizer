@@ -3,7 +3,6 @@ import { Text } from 'src/ui/text';
 import { Option } from './Option';
 import styles from './RadioGroup.module.scss';
 
-// Создаю тип RadioGroupProps, который описывает пропсы (свойства) компонента RadioGroup.
 type RadioGroupProps = {
 	name: string;
 	options: OptionType[];
@@ -12,14 +11,11 @@ type RadioGroupProps = {
 	title: string;
 };
 
-// Экспортирую компонент RadioGroup, который принимает пропсы типа RadioGroupProps.
 export const RadioGroup = (props: RadioGroupProps) => {
-	const { name, options, selected, onChange, title } = props; // Извлекаю свойства name, options, selected, onChange и title.
+	const { name, options, selected, onChange, title } = props;
 
-	// Создаю функцию handleChange, которая вызывает функцию onChange с переданной опцией.
 	const handleChange = (option: OptionType) => onChange?.(option);
 
-	// Возвращаю JSX-код, который представляет собой контейнер для радио-группы.
 	return (
 		<div className={styles.container}>
 			{title && (

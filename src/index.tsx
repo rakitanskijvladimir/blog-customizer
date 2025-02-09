@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
-import { Page } from './components/page';
+import { App } from './components/app';
 import './styles/index.scss';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
@@ -8,6 +8,6 @@ const root = createRoot(domNode);
 
 root.render(
 	<StrictMode>
-		<Page />
+		<App />
 	</StrictMode>
 );

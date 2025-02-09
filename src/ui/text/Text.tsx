@@ -1,5 +1,4 @@
 import { ElementType, ReactNode } from 'react';
-import { clsx } from 'clsx';
 import { FontFamiliesClasses } from 'src/constants/articleProps';
 
 import styles from './index.module.scss';
@@ -39,16 +38,16 @@ export const Text = ({
 	family = 'open-sans',
 	dynamicLite = false,
 }: TextProps) => {
-	const className = clsx(
-		styles.text,
-		styles[`size${size}`],
-		{ [styles.dynamic]: dynamic },
-		styles[`weight${weight}`],
-		styles[`${fontStyle}`],
-		{ [styles.uppercase]: uppercase },
-		styles[`${align}`],
-		styles[`${family}`],
-		{ [styles.dynamicLite]: dynamicLite }
-	);
+	const className = `
+  ${styles.text}
+  ${styles[`size${size}`]}
+  ${dynamic ? styles.dynamic : ''}
+  ${styles[`weight${weight}`]}
+  ${styles[fontStyle]}
+  ${uppercase ? styles.uppercase : ''}
+  ${styles[align]}
+  ${styles[family]}
+  ${dynamicLite ? styles.dynamicLite : ''}
+`.trim();
 	return <Tag className={className}>{children}</Tag>;
 };
