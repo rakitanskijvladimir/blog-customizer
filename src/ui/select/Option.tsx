@@ -5,6 +5,7 @@ import { Text } from 'src/ui/text';
 import { isFontFamilyClass } from './helpers/isFontFamilyClass';
 import { useEnterOptionSubmit } from './hooks/useEnterOptionSubmit';
 import styles from './Select.module.scss';
+import clsx from 'clsx';
 
 type OptionProps = {
 	option: OptionType;
@@ -32,9 +33,7 @@ export const Option = (props: OptionProps) => {
 
 	return (
 		<li
-			className={`${styles.option} ${
-				optionClassName ? styles[optionClassName] : ''
-			}`}
+			className={clsx(styles.option, styles[optionClassName || ''])}
 			value={value}
 			onClick={handleClick(value)}
 			tabIndex={0}

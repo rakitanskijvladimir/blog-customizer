@@ -17,29 +17,29 @@ import {
 	defaultArticleState,
 } from 'src/constants/articleProps';
 import styles from './ArticleParamsForm.module.scss';
+import clsx from 'clsx';
 
 export type ArticleParamsFormProps = {
 	onChange: React.Dispatch<React.SetStateAction<ArticleStateType>>;
 };
 
 export const ArticleParamsForm = ({ onChange }: ArticleParamsFormProps) => {
-	const defaultStateForm: ArticleStateType = defaultArticleState;
 	const asideRef = useRef<HTMLDivElement | null>(null);
 	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 	const [fontFamily, setFontFamily] = useState<OptionType>(
-		defaultStateForm.fontFamilyOption
+		defaultArticleState.fontFamilyOption
 	);
 	const [fontSize, setFontSize] = useState<OptionType>(
-		defaultStateForm.fontSizeOption
+		defaultArticleState.fontSizeOption
 	);
 	const [backgroundColor, setBackgroundColor] = useState<OptionType>(
-		defaultStateForm.backgroundColor
+		defaultArticleState.backgroundColor
 	);
 	const [fontColor, setFontColor] = useState<OptionType>(
-		defaultStateForm.fontColor
+		defaultArticleState.fontColor
 	);
 	const [contentWidth, setContentWidth] = useState<OptionType>(
-		defaultStateForm.contentWidth
+		defaultArticleState.contentWidth
 	);
 
 	useClose({
@@ -59,14 +59,13 @@ export const ArticleParamsForm = ({ onChange }: ArticleParamsFormProps) => {
 		});
 	};
 
-	const handleReset = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		onChange(defaultStateForm);
-		setFontFamily(defaultStateForm.fontFamilyOption);
-		setFontSize(defaultStateForm.fontSizeOption);
-		setBackgroundColor(defaultStateForm.backgroundColor);
-		setFontColor(defaultStateForm.fontColor);
-		setContentWidth(defaultStateForm.contentWidth);
+	const handleReset = () => {
+		onChange(defaultArticleState);
+		setFontFamily(defaultArticleState.fontFamilyOption);
+		setFontSize(defaultArticleState.fontSizeOption);
+		setBackgroundColor(defaultArticleState.backgroundColor);
+		setFontColor(defaultArticleState.fontColor);
+		setContentWidth(defaultArticleState.contentWidth);
 	};
 
 	return (
@@ -76,9 +75,7 @@ export const ArticleParamsForm = ({ onChange }: ArticleParamsFormProps) => {
 				isOpen={isMenuOpen}
 			/>
 			<aside
-				className={`${styles.container} ${
-					isMenuOpen ? styles.container_open : ''
-				}`}>
+				className={clsx(styles.container, isMenuOpen && styles.container_open)}>
 				<form
 					className={styles.form}
 					onSubmit={handleSubmit}

@@ -8,6 +8,7 @@ import { isFontFamilyClass } from './helpers/isFontFamilyClass';
 import { useEnterSubmit } from './hooks/useEnterSubmit';
 import { useOutsideClickClose } from './hooks/useOutsideClickClose';
 import styles from './Select.module.scss';
+import clsx from 'clsx';
 
 type SelectProps = {
 	selected: OptionType | null;
@@ -62,12 +63,13 @@ export const Select = (props: SelectProps) => {
 				<img
 					src={arrowDown}
 					alt='иконка стрелочки'
-					className={`${styles.arrow} ${isOpen ? styles.arrow_open : ''}`}
+					className={clsx(styles.arrow, { [styles.arrow_open]: isOpen })}
 				/>
 				<div
-					className={`${styles.placeholder} ${
-						selected ? styles.optionClassName : ''
-					}`}
+					className={clsx(
+						styles.placeholder,
+						styles[selected?.optionClassName || '']
+					)}
 					data-status={status}
 					data-selected={!!selected?.value}
 					onClick={handlePlaceHolderClick}
