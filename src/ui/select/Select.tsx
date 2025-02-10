@@ -1,15 +1,14 @@
 import { useState, useRef } from 'react';
 import type { MouseEventHandler } from 'react';
-import clsx from 'clsx';
 import { OptionType } from 'src/constants/articleProps';
-import { Text } from 'src/ui/text';
+import { Text } from '../text';
 import arrowDown from 'src/images/arrow-down.svg';
 import { Option } from './Option';
 import { isFontFamilyClass } from './helpers/isFontFamilyClass';
 import { useEnterSubmit } from './hooks/useEnterSubmit';
 import { useOutsideClickClose } from './hooks/useOutsideClickClose';
-
 import styles from './Select.module.scss';
+import clsx from 'clsx';
 
 type SelectProps = {
 	selected: OptionType | null;
@@ -25,7 +24,6 @@ export const Select = (props: SelectProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const placeholderRef = useRef<HTMLDivElement>(null);
-	const optionClassName = selected?.optionClassName ?? '';
 
 	useOutsideClickClose({
 		isOpen,
@@ -43,6 +41,7 @@ export const Select = (props: SelectProps) => {
 		setIsOpen(false);
 		onChange?.(option);
 	};
+
 	const handlePlaceHolderClick: MouseEventHandler<HTMLDivElement> = () => {
 		setIsOpen((isOpen) => !isOpen);
 	};
@@ -61,11 +60,15 @@ export const Select = (props: SelectProps) => {
 				ref={rootRef}
 				data-is-active={isOpen}
 				data-testid='selectWrapper'>
-				<img src={arrowDown} alt='иконка стрелочки' className={styles.arrow} />
+				<img
+					src={arrowDown}
+					alt='иконка стрелочки'
+					className={clsx(styles.arrow, { [styles.arrow_open]: isOpen })}
+				/>
 				<div
 					className={clsx(
 						styles.placeholder,
-						(styles as Record<string, string>)[optionClassName]
+						styles[selected?.optionClassName || '']
 					)}
 					data-status={status}
 					data-selected={!!selected?.value}

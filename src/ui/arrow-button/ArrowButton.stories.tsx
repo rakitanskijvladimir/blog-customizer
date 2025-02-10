@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { ArrowButton } from './ArrowButton';
 import { createElement, useState } from 'react';
 
@@ -14,7 +13,6 @@ export const ArrowButtonStory: Story = {
 	render: () =>
 		createElement(() => {
 			const [isOpen, setIsOpen] = useState(false);
-
 			return <ArrowButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />;
 		}),
 };
